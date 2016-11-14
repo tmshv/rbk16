@@ -1,0 +1,78 @@
+{
+  "HOME": [
+    {
+      "url": "/states/Home"
+    }
+  ],
+  "S": [
+    {
+      "url": "/states/SHello"
+    },
+    {
+      "url": "/states/S1"
+    },
+    {
+      "url": "/states/S2"
+    }
+  ],
+  "Q": [
+    {
+      "url": "/states/QHello"
+    },
+    {
+      "url": "/states/Q9"
+    },
+    {
+      "url": "/states/QExmple"
+    },
+    {
+      "url": "/states/QUndstndr"
+    }
+  ],
+  "SQ": [
+    {
+      "url": "/states/SQ1"
+    },
+    {
+      "url": "/states/SQ2"
+    },
+    {
+      "url": "/states/SQ3"
+    },
+    {
+      "url": "/states/SQ4"
+    },
+    {
+      "url": "/states/SQ5"
+    },
+    {
+      "url": "/states/SQ6"
+    },
+    {
+      "url": "/states/SQ7"
+    },
+    {
+      "url": "/states/SQ8"
+    },
+    {
+      "url": "/states/SQ9"
+    },
+    {
+      "url": "/states/SQ10"
+    },
+    {
+      "url": "/states/SQ11"
+    },
+    {
+      "url": "/states/SQ12"
+    },
+    {
+      "url": "/states/SQ13"
+    }
+  ],
+  "SQSPB": [
+    {
+      "url": "/states/Dust"
+    }
+  ]
+}

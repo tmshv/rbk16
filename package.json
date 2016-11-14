@@ -1,0 +1,16 @@
+{
+  "name": "rbk16",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "gh": "ghpages tmshv/rbk16",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Roman Timashev",
+  "license": "ISC",
+  "devDependencies": {
+    "ghpages": "0.0.8"
+  }
+}
