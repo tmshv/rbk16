@@ -4,9 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		.then(main)
 })
 
-function absolute(url) {
+function absolute(path) {
 	const base = location.href
-	return base + url
+	let url = base + path
+	if(!/\/$/.test(url)) return `${url}/`
+	return url
 }
 
 function main(data) {
