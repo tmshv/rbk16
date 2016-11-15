@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		.then(main)
 })
 
+function absolute(url) {
+	const base = location.href
+	return base + url
+}
+
 function main(data) {
 	let state = null
 	let index = 0
@@ -59,6 +64,6 @@ function main(data) {
 
 function open(state) {
 	let container = document.querySelector('.state')
-	container.innerHTML = `<iframe width="100%" height="100%" src="${state.url}"></iframe>`
+	container.innerHTML = `<iframe width="100%" height="100%" src="${absolute(state.url)}"></iframe>`
 }
 
