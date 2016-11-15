@@ -89,5 +89,5 @@ ul li {
 }
 
 @font-face {font-family: 't132';
-    src: url('/t132.eot');
-    src: url('/t132.woff') format('woff'),url('/t132.ttf') format('truetype');}
+    src: url('../../t132.ttf') format('truetype');
+}
