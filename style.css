@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+.state {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #1c1f24;
+
+    /*left: 100px;*/
+    /*top: 100px;*/
+}
+
+svg {
+    /*max-width: 35em;*/
+    width: 100%;
+    height: 100%;
+    padding: 2em;
+    background-color: lemonchiffon;
+}
+
+iframe {
+    border: 0;
+}
+
+.control-panel {
+    position: absolute;
+    background-color: #333343;
+    width: 100%;
+    height: 3em;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+}
