@@ -6,7 +6,7 @@
   ],
   "S": [
     {
-      "url": "states/SHello"
+      "url": "states/S0"
     },
     {
       "url": "states/S1"
@@ -17,16 +17,22 @@
   ],
   "Q": [
     {
-      "url": "states/QHello"
+      "url": "states/Q1"
     },
     {
-      "url": "states/Q9"
+      "url": "states/Q2"
     },
     {
-      "url": "states/QExmple"
+      "url": "states/Q3"
     },
     {
-      "url": "states/QUndstndr"
+      "url": "states/Q4"
+    },
+    {
+      "url": "states/Q5"
+    },
+    {
+      "url": "states/Q6"
     }
   ],
   "SQ": [
@@ -62,17 +68,29 @@
     },
     {
       "url": "states/SQ11"
-    },
-    {
-      "url": "states/SQ12"
-    },
-    {
-      "url": "states/SQ13"
     }
   ],
   "SQSPB": [
     {
-      "url": "states/Dust"
+      "url": "states/SQSPB1"
+    },
+    {
+      "url": "states/SQSPB2"
+    },
+    {
+      "url": "states/SQSPB3"
+    },
+    {
+      "url": "states/SQSPB4"
+    },
+    {
+      "url": "states/SQSPB5"
+    },
+    {
+      "url": "states/SQSPB6"
+    },
+    {
+      "url": "states/SQSPB7"
     }
   ]
 }

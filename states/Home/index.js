@@ -1,18 +1,27 @@
+particlesJS.load('back', 'particles.json');
+
 let container;
 let camera, scene, renderer;
 
 let objects = [];
+const agents = [];
+let geometry;
 
-let geometry = new THREE.BoxGeometry(20, 20, 20);
+let backDots = new THREE.Geometry();
+let backLines;
+let backMaxRadius = 500
+let backMaxRadiusSq = backMaxRadius * backMaxRadius
+let backMinRadius = 200
+let backMinRadiusSq = backMinRadius * backMinRadius
 
 let raycaster;
 let mouse;
 
 let mainObject;
 
+const random = (a, b) => b ? a + (b - a) * Math.random() : Math.random() * a
 const click = i => sendData({id: i.id})
 const interpolate = (m, n, v) => m + (n - m) * v
-
 
 const data = {
 	nodes: [
@@ -78,13 +87,14 @@ function sendData(data) {
 
 function init() {
 	camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
-	camera.position.z = 1000;
+	camera.position.z = 1500;
 
 	scene = new THREE.Scene();
 	scene.add(camera);
 
-	renderer = new THREE.WebGLRenderer({antialias: true});
-	renderer.setClearColor(0x1c1f24);
+	renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+	//renderer.setClearColor(0x1c1f24);
+	//renderer.setClearColor(0xffffff);
 	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -101,6 +111,7 @@ function init() {
 	mouse = new THREE.Vector2();
 
 	initScene(createGeom(data))
+	//initBack()
 }
 
 function initScene(data) {
@@ -157,13 +168,11 @@ function initScene(data) {
 	})
 
 	function onDocumentTouchStart(event) {
-
 		event.preventDefault();
 
 		event.clientX = event.touches[0].clientX;
 		event.clientY = event.touches[0].clientY;
 		onDocumentMouseDown(event);
-
 	}
 
 	function onDocumentMouseDown(event) {
@@ -185,10 +194,37 @@ function initScene(data) {
 	}
 }
 
+function initBack() {
+	backDots.dynamic = true
+
+	backLines = new THREE.Group();
+	scene.add(backLines)
+
+	for (let i = 0; i < 1000; i++) {
+		const radius = random(backMinRadius, backMaxRadius)
+		const [x, y, z] = randomSpherePoint(0, 0, 0, radius)
+
+		const a = new Agent(x, y, z, 1)
+		a.velocity.x = random(-1, 1)
+		a.velocity.y = random(-1, 1)
+		a.velocity.z = random(-1, 1)
+		a.vector = new THREE.Vector3(a.location.x, a.location.y, a.location.z)
+		agents.push(a);
+		backDots.vertices.push(a.vector);
+	}
+
+	var dotMaterial = new THREE.PointsMaterial({size: 1, color: 0, sizeAttenuation: false});
+
+	var dot = new THREE.Points(backDots, dotMaterial);
+
+	//scene.add( dot );
+	mainObject.add(dot);
+}
+
 function createGeom(data) {
 	const coords = [];
 	let angle = 0;
-	const radius = 400;
+	const radius = 300;
 	for (let i = 0; i < 3; i++) {
 		const x = Math.cos(angle) * radius;
 		const y = Math.sin(angle) * radius;
@@ -198,7 +234,7 @@ function createGeom(data) {
 		angle += Math.PI * 2 / 3
 	}
 
-	coords.push([0, 0, 500])
+	coords.push([0, 0, 400])
 
 	data.nodes.forEach((node, i) => {
 		node.coord = coords[i]
@@ -206,9 +242,73 @@ function createGeom(data) {
 	return data;
 }
 
+function updateBack() {
+	const links = []
+
+	const update = i => i.update()
+
+	const r = 150;//mmx(10, 100);
+	for (let a of agents) {
+		for (let b of agents) {
+			if (a != b && a.distanceTo(b) < r) {
+				if(links.length < 500) links.push(a.connect(b));
+			}
+		}
+	}
+
+	agents
+		.filter(a => (a.location.magSq() > backMaxRadiusSq))
+		.forEach(a => {
+			let f = a.seek(new Vector(0, 0, 0))
+			a.force(f)
+		})
+
+	agents
+		.filter(a => (a.location.magSq() < backMinRadiusSq))
+		.forEach(a => {
+			let f = a.seek(new Vector(0, 0, 0))
+			f.mult(-1)
+			a.force(f)
+		})
+
+	//connections.forEach(update)
+	agents.forEach(a => {
+		a.vector.x = a.location.x
+		a.vector.y = a.location.y
+		a.vector.z = a.location.z
+
+		a.update()
+	})
+
+	//backLines.children = []
+	//connections.forEach(link => {
+	//	const material = new THREE.LineBasicMaterial({color: 0x606060})
+	//
+	//	const geometry = new THREE.Geometry()
+	//	geometry.vertices.push(link.a.vector);
+	//	geometry.vertices.push(link.b.vector);
+	//	geometry.computeLineDistances();
+	//
+	//	const line = new THREE.Line(geometry, material);
+	//	backLines.add(line);
+	//})
+
+	//backDots.vertices.forEach(v => {
+	//	v.x = random(500)
+	//	v.y = random(500)
+	//	v.z = random(500)
+	//
+	//});
+	backDots.verticesNeedUpdate = true
+
+	//agents.forEach(update)
+}
+
 function animate() {
 	mainObject.rotation.x += 0.001
 	mainObject.rotation.y += 0.0005
+
+	//updateBack()
 
 	requestAnimationFrame(animate);
 	render();
@@ -220,3 +320,19 @@ function render() {
 
 init();
 animate();
+
+/*
+ Returns a random point of a sphere, evenly distributed over the sphere.
+ The sphere is centered at (x0,y0,z0) with the passed in radius.
+ The returned point is returned as a three element array [x,y,z].
+ */
+function randomSpherePoint(x0, y0, z0, radius) {
+	var u = Math.random();
+	var v = Math.random();
+	var theta = 2 * Math.PI * u;
+	var phi = Math.acos(2 * v - 1);
+	var x = x0 + (radius * Math.sin(phi) * Math.cos(theta));
+	var y = y0 + (radius * Math.sin(phi) * Math.sin(theta));
+	var z = z0 + (radius * Math.cos(phi));
+	return [x, y, z];
+}
