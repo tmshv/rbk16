@@ -173,7 +173,7 @@ function initScene(data) {
 		objects.push(sprite)
 	}
 
-	//data.links.forEach(link => {
+	//data.connections.forEach(link => {
 	//	const Mat = link.type === 'dash' ? THREE.LineDashedMaterial : THREE.LineBasicMaterial
 	//
 	//	const material = new Mat(link.material)
@@ -211,7 +211,7 @@ function initScene(data) {
 	//
 	//	raycaster.setFromCamera(mouse, camera);
 	//
-	//	const intersects = raycaster.intersectObjects(objects);
+	//	const intersects = raycaster.intersectObjects(interactiveObjects);
 	//
 	//	if (intersects.length > 0) {
 	//		const active = intersects[0].object

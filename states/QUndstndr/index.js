@@ -85,7 +85,7 @@ function initScene(data) {
 	//	sprite.scale.z = 100
 	//
 	//	group.add(sprite)
-	//	objects.push(sprite)
+	//	interactiveObjects.push(sprite)
 	//}
 
 	data.tags.forEach(tag => {
