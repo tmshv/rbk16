@@ -1,48 +1,64 @@
 {
   "groups": [
     {
-      "radiusMin": 100,
-      "radiusMax": 200,
-      "size": 20,
+      "form": {
+        "radiusMin": 60,
+        "radiusMax": 60,
+        "size": 50
+      },
 
       "elements": [
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"}
+        {"file": "logo/LOGO-01.png"},
+        {"file": "logo/LOGO-02.png"},
+        {"file": "logo/LOGO-03.png"},
+        {"file": "logo/LOGO-04.png"},
+        {"file": "logo/LOGO-05.png"},
+        {"file": "logo/LOGO-06.png"},
+        {"file": "logo/LOGO-07.png"},
+        {"file": "logo/LOGO-08.png"},
+        {"file": "logo/LOGO-09.png"},
+        {"file": "logo/LOGO-10.png"},
+        {"file": "logo/LOGO-11.png"}
       ]
     },
     {
-      "radiusMin": 800,
-      "radiusMax": 1000,
-      "size": 150,
+      "form": {
+        "radiusMin": 180,
+        "radiusMax": 180,
+        "size": 150
+      },
 
       "elements": [
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"},
-        {"file": "processing-2.png"}
+        {"file": "2/2-01.png"},
+        {"file": "2/2-02.png"},
+        {"file": "2/2-03.png"},
+        {"file": "2/2-04.png"},
+        {"file": "2/2-05.png"},
+        {"file": "2/2-06.png"},
+        {"file": "2/2-07.png"},
+        {"file": "2/2-08.png"},
+        {"file": "2/2-09.png"}
+      ]
+    },
+    {
+      "form": {
+        "radiusMin": 320,
+        "radiusMax": 320,
+        "size": 300
+      },
+
+      "elements": [
+        {"file": "3/3-01.png"},
+        {"file": "3/3-02.png"},
+        {"file": "3/3-03.png"},
+        {"file": "3/3-04.png"},
+        {"file": "3/3-05.png"}
       ]
     }
   ],
   "layers": [
-    {"value": 200},
-    {"value": 1000},
-    {"value": 2000},
-    {"value": 5000}
+    {"value": 100},
+    {"value": 400},
+    {"value": 700}
   ]
 }

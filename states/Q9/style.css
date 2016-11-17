@@ -1,9 +1,10 @@
 body {
     margin: 0;
 
-    font-family: 't132', monospace;
-    font-size: 3rem;
-    color: #ff00ff;
+    font-family: 'FONT', monospace;
+    font-size: 3.2rem;
+    line-height: 90%;
+    color: #3BBEBE;
 
     position: absolute;
 
@@ -13,8 +14,16 @@ body {
 
     height: 100%;
     /*overflow: hidden;*/
+}
 
-    background-color: black;
+h2{
+    font-family: 'FONT BOLD', monospace;
+    font-size: 2.5rem;
+    color: black;
+
+    position: absolute;
+    top: 0.1em;
+    left: 0.35em;
 }
 
 .wrapper{
@@ -25,15 +34,16 @@ body {
 }
 
 .wrapper__right{
-    width: 70%;
+    width: 75%;
     display: flex;
     /*justify-content: center;*/
 }
 
 .wrapper__left{
-    width: 30%;
+    width: 20%;
     display: flex;
     align-items: center;
+    margin: 0 .5em;
 }
 
 .images {
@@ -54,15 +64,13 @@ body {
     /*height: 0em;*/
     /*display: inline-block;*/
     width: 33.3%;
-    padding: .2em;
-
-
+    padding: .1em;
 
     box-sizing: border-box;
 }
 
 .images__item:hover{
-    background-color: #ff00ff;
+    background-color: #3BBEBE;
 }
 
 img {
@@ -88,6 +96,12 @@ ul li {
     margin: .3em 0;
 }
 
-@font-face {font-family: 't132';
-    src: url('../../t132.ttf') format('truetype');
+@font-face {
+    font-family: 'FONT';
+    src: url('../../fonts/BEBASNEUE_BOOK.OTF') format('opentype');
+}
+
+@font-face {
+    font-family: 'FONT BOLD';
+    src: url('../../fonts/BEBASNEUE_BOLD.OTF') format('opentype');
 }
