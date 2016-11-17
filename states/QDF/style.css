@@ -22,8 +22,9 @@ h2{
     color: #1b1c1c;
 
     position: absolute;
-    top: 0.1em;
-    left: 0.35em;
+    top: 3px;
+    left: 5px;
+    margin: 0;
 }
 
 .wrapper{
