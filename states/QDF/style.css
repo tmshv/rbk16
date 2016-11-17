@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+
+    font-family: 'FONT', monospace;
+    font-size: 3.2rem;
+    line-height: 90%;
+    color: #3BBEBE;
+
+    position: absolute;
+
+    display: flex;
+
+    align-items: center;
+
+    height: 100%;
+    /*overflow: hidden;*/
+}
+
+h2{
+    font-family: 'FONT BOLD', monospace;
+    font-size: 2.5rem;
+    color: #1b1c1c;
+
+    position: absolute;
+    top: 0.1em;
+    left: 0.35em;
+}
+
+.wrapper{
+    width: 100%;
+    display: flex;
+
+    background-color: white;
+}
+
+.wrapper__right{
+    width: 75%;
+    display: flex;
+    /*justify-content: center;*/
+}
+
+.wrapper__left{
+    width: 20%;
+    display: flex;
+    align-items: center;
+    margin: 0 .5em;
+}
+
+.images {
+    padding: .2em;
+
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.images__item {
+    width: 45%;
+    padding: .1em;
+
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+}
+
+ul {
+    list-style: none;
+    /*margin: 0;*/
+    padding: 0;
+}
+
+ul li {
+    margin: .3em 0;
+}
+
+@font-face {
+    font-family: 'FONT';
+    src: url('../../fonts/BEBASNEUE_BOOK.OTF') format('opentype');
+}
+
+@font-face {
+    font-family: 'FONT BOLD';
+    src: url('../../fonts/BEBASNEUE_BOLD.OTF') format('opentype');
+}
