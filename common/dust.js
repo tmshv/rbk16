@@ -109,7 +109,7 @@ function dust(data) {
 	})
 
 	getLayer = layers(data.layers)
-	nextLayer(false)
+	nextLayer()
 }
 
 function onDocumentTouchStart(event) {
@@ -140,51 +140,33 @@ function onDocumentMouseDown(event) {
 	//}
 }
 
-function nextLayer(animate = true) {
+function nextLayer() {
 	let layer = getLayer(currentLayerIndex)
 	if (!layer) {
 		currentLayerIndex = 0
 		return nextLayer()
 	}
 
-	//objects.forEach((layer, i) => {
-	//	let o = i <= currentLayerIndex ? 1 : 0
-	//	layer.children.forEach(sprite => {
-	//		sprite.material.opacity = o
-	//	})
-	//})
-
-	const toggleOpacity = value => 1- value
 	const layerOpacityTweens = objects
 		.map((layer, i) => ({
 			opacity: i <= currentLayerIndex ? 1 : 0
 		}))
 
-	if (animate) {
-		tween(camera.position)
-			.to({z: layer.value}, 300)
+	tween(camera.position)
+		.to({z: layer.value}, 300)
+		.start()
+
+	layerOpacityTweens.forEach((tw, i) => {
+		let object = objects[i]
+
+		tween(object)
+			.to({opacity: tw.opacity}, 350)
+			.onUpdate(function() {
+				const opacity = this.opacity
+				setLayerOpacity(object, opacity)
+			})
 			.start()
-
-		layerOpacityTweens.forEach((tw, i) => {
-			let object = objects[i]
-
-			tween(object)
-				.to({opacity: tw.opacity}, 350)
-				.onUpdate(function() {
-					const opacity = this.opacity
-					setLayerOpacity(object, opacity)
-				})
-				.start()
-		})
-	}
-	else {
-		camera.position.z = layer.value;
-		layerOpacityTweens.forEach((item, i) => {
-			const opacity = item.opacity
-			objects[i].opacity = opacity
-			setLayerOpacity(objects[i], opacity)
-		})
-	}
+	})
 
 	currentLayerIndex++
 }
@@ -198,7 +180,7 @@ function setLayerOpacity(layer, value) {
 function animate(time) {
 	if (rootObject) {
 		rootObject.rotation.z += 0.003
-		rootObject.rotation.x += 0.01
+		rootObject.rotation.x += 0.0075
 		rootObject.rotation.y += 0.001
 	}
 
