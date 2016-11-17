@@ -1,0 +1,48 @@
+{
+  "groups": [
+    {
+      "radiusMin": 100,
+      "radiusMax": 200,
+      "size": 20,
+
+      "elements": [
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"}
+      ]
+    },
+    {
+      "radiusMin": 800,
+      "radiusMax": 1000,
+      "size": 150,
+
+      "elements": [
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"},
+        {"file": "processing-2.png"}
+      ]
+    }
+  ],
+  "layers": [
+    {"value": 200},
+    {"value": 1000},
+    {"value": 2000},
+    {"value": 5000}
+  ]
+}
