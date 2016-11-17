@@ -88,6 +88,7 @@ function sendData(data) {
 function init() {
 	camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
 	camera.position.z = 1500;
+	camera.position.x = -500;
 
 	scene = new THREE.Scene();
 	scene.add(camera);
@@ -121,6 +122,7 @@ function initScene(data) {
 	const group = new THREE.Group();
 	scene.add(group)
 	mainObject = group
+	mainObject.position.x = -500
 
 	data.nodes.forEach(node => {
 		const map = new THREE.TextureLoader().load(node.file)
@@ -222,19 +224,21 @@ function initBack() {
 }
 
 function createGeom(data) {
+	const [cx, cy, cz] = [0, 0, 0]
+
 	const coords = [];
 	let angle = 0;
 	const radius = 300;
 	for (let i = 0; i < 3; i++) {
-		const x = Math.cos(angle) * radius;
-		const y = Math.sin(angle) * radius;
-		const z = 0
+		const x = cx + Math.cos(angle) * radius;
+		const y = cy + Math.sin(angle) * radius;
+		const z = cz
 
 		coords.push([x, y, z])
 		angle += Math.PI * 2 / 3
 	}
 
-	coords.push([0, 0, 400])
+	coords.push([cx, cy, cz + 400])
 
 	data.nodes.forEach((node, i) => {
 		node.coord = coords[i]
