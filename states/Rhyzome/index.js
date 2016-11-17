@@ -1,8 +1,8 @@
-const repulsion = 100
+const repulsion = 1000
 const mass = 1
 const k = 1
 const damping = .8975
-const springLength = 100
+const springLength = 10
 
 let container
 let camera, scene, renderer
@@ -44,14 +44,14 @@ const data = {
 			id: 'S',
 			file: 'S.png',
 		},
-		//{
-		//	id: 'SQ',
-		//	file: 'SQ.png',
-		//},
-		//{
-		//	id: 'SQSPB',
-		//	file: 'SQSPB.png',
-		//}
+		{
+			id: 'SQ',
+			file: 'SQ.png',
+		},
+		{
+			id: 'SQSPB',
+			file: 'SQSPB.png',
+		}
 	],
 
 	links: [
@@ -98,8 +98,6 @@ function init() {
 	scene.add(camera)
 
 	renderer = new THREE.WebGLRenderer({antialias: true, alpha: true})
-	//renderer.setClearColor(0x1c1f24)
-	//renderer.setClearColor(0xffffff)
 	renderer.setPixelRatio(window.devicePixelRatio)
 	renderer.setSize(window.innerWidth, window.innerHeight)
 
@@ -180,8 +178,8 @@ function main(data) {
 }
 
 function simulateRhyzome() {
-	//applyCouloumbsLaw(repulsion, agents)
-	//applyHooksLaw(k, connections)
+	applyCouloumbsLaw(repulsion, agents)
+	applyHooksLaw(k, connections)
 
 	agents.forEach(a => {
 		a.update()
