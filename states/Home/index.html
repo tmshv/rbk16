@@ -11,6 +11,10 @@
             overflow: hidden;
         }
 
+        .wrapper {
+            display: flex;
+        }
+
         #back {
             position: absolute;
             width: 100%;
@@ -19,11 +23,20 @@
             left: 0;
             z-index: -1;
         }
+
+        #home{
+            width: 100%;
+            height: 100%;
+        }
+
     </style>
 </head>
 <body>
 
-<div id="back"></div>
+<div class="wrapper">
+    <div id="back"></div>
+    <div id="home"></div>
+</div>
 
 <script src="../../lib/three.min.js"></script>
 <script src="../../lib/OrbitControls.js"></script>

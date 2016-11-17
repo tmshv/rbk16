@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+
+    font-family: 'FONT', monospace;
+    font-size: 3.2rem;
+    line-height: 90%;
+    color: #3BBEBE;
+
+    position: absolute;
+
+    display: flex;
+
+    align-items: center;
+
+    height: 100%;
+    /*overflow: hidden;*/
+}
+
+h2{
+    font-family: 'FONT BOLD', monospace;
+    font-size: 2.5rem;
+    color: black;
+
+    position: absolute;
+    top: 0.1em;
+    left: 0.35em;
+}
+
+.wrapper{
+    width: 100%;
+    display: flex;
+
+    background-color: white;
+}
+
+.wrapper__right{
+    width: 75%;
+    display: flex;
+    /*justify-content: center;*/
+}
+
+.wrapper__left{
+    width: 20%;
+    display: flex;
+    align-items: center;
+    margin: 0 .5em;
+}
+
+.images {
+    padding: .2em;
+
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: flex-start;
+
+    box-sizing: border-box;
+}
+
+.images__item {
+    /*background-color: red;*/
+    /*height: 0em;*/
+    /*display: inline-block;*/
+    width: 100%;
+    padding: .1em;
+
+    box-sizing: border-box;
+}
+
+img {
+    display: block;
+    width: 100%;
+
+
+    /*border: 4px solid red;*/
+}
+
+img:hover{
+    /*border: 4px solid gold;*/
+}
+
+
+ul {
+    list-style: none;
+    /*margin: 0;*/
+    padding: 0;
+}
+
+ul li {
+    margin: .3em 0;
+}
+
+@font-face {
+    font-family: 'FONT';
+    src: url('../../fonts/BEBASNEUE_BOOK.OTF') format('opentype');
+}
+
+@font-face {
+    font-family: 'FONT BOLD';
+    src: url('../../fonts/BEBASNEUE_BOLD.OTF') format('opentype');
+}

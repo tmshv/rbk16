@@ -98,7 +98,7 @@ function init() {
 	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
-	container = document.createElement('div');
+	container = document.querySelector('#home');
 	container.appendChild(renderer.domElement);
 	document.body.appendChild(container);
 

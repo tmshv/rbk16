@@ -6,7 +6,7 @@
   ],
   "S": [
     {
-      "url": "states/S0"
+      "url": "states/SHello"
     },
     {
       "url": "states/SUndstndr"
@@ -17,80 +17,83 @@
   ],
   "Q": [
     {
-      "url": "states/Q1"
+      "url": "states/QHello"
     },
     {
       "url": "states/Q9"
     },
     {
-      "url": "states/Q3"
+      "url": "states/QBars"
     },
     {
-      "url": "states/Q4"
+      "url": "states/QDF"
     },
     {
-      "url": "states/Q5"
+      "url": "states/QMS"
     },
     {
-      "url": "states/Q6"
+      "url": "states/QEnd"
     }
   ],
   "SQ": [
     {
-      "url": "states/SQ1"
+      "url": "states/SQF"
     },
     {
-      "url": "states/SQ2"
+      "url": "states/SQFHello"
     },
     {
-      "url": "states/SQ3"
+      "url": "states/SQF1"
     },
     {
-      "url": "states/SQ4"
+      "url": "states/SQF2"
     },
     {
-      "url": "states/SQ5"
+      "url": "states/SQI"
     },
     {
-      "url": "states/SQ6"
+      "url": "states/SQIHello"
     },
     {
-      "url": "states/SQ7"
+      "url": "states/SQI1"
     },
     {
-      "url": "states/SQ8"
+      "url": "states/SQI2"
     },
     {
-      "url": "states/SQ9"
+      "url": "states/SQI3"
     },
     {
-      "url": "states/SQ10"
+      "url": "states/SQC"
     },
     {
-      "url": "states/SQ11"
+      "url": "states/SQCHello"
+    },
+    {
+      "url": "states/SQCGifs"
     }
   ],
   "SQSPB": [
     {
-      "url": "states/SQSPB1"
+      "url": "states/SQSPB"
     },
     {
-      "url": "states/SQSPB2"
+      "url": "states/SQSPBMap"
     },
     {
-      "url": "states/SQSPB3"
+      "url": "states/SQSPBP"
     },
     {
-      "url": "states/SQSPB4"
+      "url": "states/SQSPBPYellow"
     },
     {
-      "url": "states/SQSPB5"
+      "url": "states/SQSPBPhone"
     },
     {
-      "url": "states/SQSPB6"
+      "url": "states/SQSPBPRed"
     },
     {
-      "url": "states/Rama"
+      "url": "states/SQSPBEnd"
     }
   ]
 }
