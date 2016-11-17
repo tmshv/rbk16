@@ -70,6 +70,12 @@
       "url": "states/SQCHello"
     },
     {
+      "url": "states/SQC1"
+    },
+    {
+      "url": "states/SQC2"
+    },
+    {
       "url": "states/SQCGifs"
     }
   ],

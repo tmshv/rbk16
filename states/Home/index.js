@@ -106,10 +106,20 @@ function init() {
 	// Controls
 	const controls = new THREE.OrbitControls(camera, renderer.domElement);
 	controls.damping = 0.999;
+	controls.enableZoom = false;
 	controls.addEventListener('change', render);
 
 	raycaster = new THREE.Raycaster();
 	mouse = new THREE.Vector2();
+
+	window.addEventListener( 'resize', onWindowResize, false );
+
+	function onWindowResize(){
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+
+		renderer.setSize( window.innerWidth, window.innerHeight );
+	}
 
 	initScene(createGeom(data))
 	//initBack()
