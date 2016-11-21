@@ -81,7 +81,7 @@
   ],
   "SQSPB": [
     {
-      "url": "states/SQSPB"
+      "url": "states/SQSPBHello"
     },
     {
       "url": "states/SQSPBMap"
