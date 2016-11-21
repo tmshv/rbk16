@@ -1,168 +1,94 @@
 class Vector {
 	constructor(x, y, z) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
+		this.x = x
+		this.y = y
+		this.z = z
 	}
 
 	set(x, y, z) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
-		return this;
+		this.x = x
+		this.y = y
+		this.z = z
+		return this
 	}
 
-	set(v) {
-		this.x = v.x;
-		this.y = v.y;
-		this.z = v.z;
-		return this;
-	}
-
-//static public PVector fromAngle(float angle) {
-//	return fromAngle(angle,null);
-//}
-//
-//static public PVector fromAngle(float angle, PVector target) {
-//	if (target == null) {
-//		target = new PVector((float)Math.cos(angle),(float)Math.sin(angle),0);
-//	} else {
-//		target.set((float)Math.cos(angle),(float)Math.sin(angle),0);
-//	}
-//	return target;
-//}
-//
 	copy() {
-		return new Vector(this.x, this.y, this.z);
+		return new Vector(this.x, this.y, this.z)
 	}
 
 	mag() {
-		return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+		return Math.sqrt(this.magSq())
 	}
 
 	magSq() {
-		return (this.x * this.x + this.y * this.y + this.z * this.z);
+		return (this.x * this.x + this.y * this.y + this.z * this.z)
 	}
 
 	add(v) {
-		this.x += v.x;
-		this.y += v.y;
-		this.z += v.z;
-		return this;
+		this.x += v.x
+		this.y += v.y
+		this.z += v.z
+		return this
 	}
 
-	//static public PVector add(PVector v1, PVector v2, PVector target) {
-//	if (target == null) {
-//		target = new PVector(v1.x + v2.x,v1.y + v2.y, v1.z + v2.z);
-//	} else {
-//		target.set(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
-//	}
-//	return target;
-//}
-//
 	sub(v) {
-		this.x -= v.x;
-		this.y -= v.y;
-		this.z -= v.z;
-		return this;
+		this.x -= v.x
+		this.y -= v.y
+		this.z -= v.z
+		return this
 	}
 
 	mult(n) {
-		this.x *= n;
-		this.y *= n;
-		this.z *= n;
-		return this;
+		this.x *= n
+		this.y *= n
+		this.z *= n
+		return this
 	}
-
-//
-//
-//static public PVector mult(PVector v, float n, PVector target) {
-//	if (target == null) {
-//		target = new PVector(v.x*n, v.y*n, v.z*n);
-//	} else {
-//		target.set(v.x*n, v.y*n, v.z*n);
-//	}
-//	return target;
-//}
-//
 
 	div(n) {
-		this.x /= n;
-		this.y /= n;
-		this.z /= n;
-		return this;
+		this.x /= n
+		this.y /= n
+		this.z /= n
+		return this
 	}
 
-//
-//static public PVector div(PVector v, float n, PVector target) {
-//	if (target == null) {
-//		target = new PVector(v.x/n, v.y/n, v.z/n);
-//	} else {
-//		target.set(v.x/n, v.y/n, v.z/n);
-//	}
-//	return target;
-//}
-//
 	dist(v) {
-		const dx = this.x - v.x;
-		const dy = this.y - v.y;
-		const dz = this.z - v.z;
-		return Math.sqrt(dx * dx + dy * dy + dz * dz);
+		const dx = this.x - v.x
+		const dy = this.y - v.y
+		const dz = this.z - v.z
+		return Math.sqrt(dx * dx + dy * dy + dz * dz)
 	}
 
-//
-//static public float dist(PVector v1, PVector v2) {
-//	float dx = v1.x - v2.x;
-//	float dy = v1.y - v2.y;
-//	float dz = v1.z - v2.z;
-//	return (float) Math.sqrt(dx*dx + dy*dy + dz*dz);
-//}
-//
 	dot(v) {
-		return this.x * v.x + this.y * v.y + this.z * v.z;
+		return this.x * v.x + this.y * v.y + this.z * v.z
 	}
 
 	cross(v) {
-		const crossX = this.y * v.z - v.y * this.z;
-		const crossY = this.z * v.x - v.z * this.x;
-		const crossZ = this.x * v.y - v.x * this.y;
+		const crossX = this.y * v.z - v.y * this.z
+		const crossY = this.z * v.x - v.z * this.x
+		const crossZ = this.x * v.y - v.x * this.y
 
-		return new Vector(crossX, crossY, crossZ);
+		return new Vector(crossX, crossY, crossZ)
 	}
 
-//static public PVector cross(PVector v1, PVector v2, PVector target) {
-//	float crossX = v1.y * v2.z - v2.y * v1.z;
-//	float crossY = v1.z * v2.x - v2.z * v1.x;
-//	float crossZ = v1.x * v2.y - v2.x * v1.y;
-//
-//	if (target == null) {
-//		target = new PVector(crossX, crossY, crossZ);
-//	} else {
-//		target.set(crossX, crossY, crossZ);
-//	}
-//	return target;
-//}
-//
 	normalize() {
-		const m = this.mag();
-		if (m != 0 && m != 1) {
-			this.div(m);
-		}
-		return this;
+		const m = this.mag()
+		if (m != 0 && m != 1) this.div(m)
+		return this
 	}
 
 	limit(max) {
 		if (this.magSq() > max * max) {
-			this.normalize();
-			this.mult(max);
+			this.normalize()
+			this.mult(max)
 		}
-		return this;
+		return this
 	}
 
 	setMag(len) {
-		this.normalize();
-		this.mult(len);
-		return this;
+		this.normalize()
+		this.mult(len)
+		return this
 	}
 
 ///**
@@ -178,11 +104,11 @@ class Vector {
 // * @param theta the angle of rotation
 // */
 //public PVector rotate(float theta) {
-//	float temp = x;
+//	float temp = x
 //	// Might need to check for rounding errors like with angleBetween function?
-//	x = x*PApplet.cos(theta) - y*PApplet.sin(theta);
-//	y = temp*PApplet.sin(theta) + y*PApplet.cos(theta);
-//	return this;
+//	x = x*PApplet.cos(theta) - y*PApplet.sin(theta)
+//	y = temp*PApplet.sin(theta) + y*PApplet.cos(theta)
+//	return this
 //}
 //
 //
@@ -197,14 +123,14 @@ class Vector {
 // * @usage web_application
 // * @brief Linear interpolate the vector to another vector
 // * @param v the vector to lerp to
-// * @param amt  The amount of interpolation; some value between 0.0 (old vector) and 1.0 (new vector). 0.1 is very near the old vector; 0.5 is halfway in between.
+// * @param amt  The amount of interpolation some value between 0.0 (old vector) and 1.0 (new vector). 0.1 is very near the old vector 0.5 is halfway in between.
 // * @see PApplet#lerp(float, float, float)
 // */
 //public PVector lerp(PVector v, float amt) {
-//	x = PApplet.lerp(x, v.x, amt);
-//	y = PApplet.lerp(y, v.y, amt);
-//	z = PApplet.lerp(z, v.z, amt);
-//	return this;
+//	x = PApplet.lerp(x, v.x, amt)
+//	y = PApplet.lerp(y, v.y, amt)
+//	z = PApplet.lerp(z, v.z, amt)
+//	return this
 //}
 //
 //
@@ -214,9 +140,9 @@ class Vector {
 // * @param v2 the vector to lerp to
 // */
 //public static PVector lerp(PVector v1, PVector v2, float amt) {
-//	PVector v = v1.copy();
-//	v.lerp(v2, amt);
-//	return v;
+//	PVector v = v1.copy()
+//	v.lerp(v2, amt)
+//	return v
 //}
 //
 //
@@ -227,10 +153,10 @@ class Vector {
 // * @param z the z component to lerp to
 // */
 //public PVector lerp(float x, float y, float z, float amt) {
-//	this.x = PApplet.lerp(this.x, x, amt);
-//	this.y = PApplet.lerp(this.y, y, amt);
-//	this.z = PApplet.lerp(this.z, z, amt);
-//	return this;
+//	this.x = PApplet.lerp(this.x, x, amt)
+//	this.y = PApplet.lerp(this.y, y, amt)
+//	this.z = PApplet.lerp(this.z, z, amt)
+//	return this
 //}
 //
 //
@@ -251,39 +177,40 @@ class Vector {
 //
 //	// We get NaN if we pass in a zero vector which can cause problems
 //	// Zero seems like a reasonable angle between a (0,0,0) vector and something else
-//	if (v1.x == 0 && v1.y == 0 && v1.z == 0 ) return 0.0f;
-//	if (v2.x == 0 && v2.y == 0 && v2.z == 0 ) return 0.0f;
+//	if (v1.x == 0 && v1.y == 0 && v1.z == 0 ) return 0.0f
+//	if (v2.x == 0 && v2.y == 0 && v2.z == 0 ) return 0.0f
 //
-//	double dot = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
-//	double v1mag = Math.sqrt(v1.x * v1.x + v1.y * v1.y + v1.z * v1.z);
-//	double v2mag = Math.sqrt(v2.x * v2.x + v2.y * v2.y + v2.z * v2.z);
+//	double dot = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z
+//	double v1mag = Math.sqrt(v1.x * v1.x + v1.y * v1.y + v1.z * v1.z)
+//	double v2mag = Math.sqrt(v2.x * v2.x + v2.y * v2.y + v2.z * v2.z)
 //	// This should be a number between -1 and 1, since it's "normalized"
-//	double amt = dot / (v1mag * v2mag);
+//	double amt = dot / (v1mag * v2mag)
 //	// But if it's not due to rounding error, then we need to fix it
 //	// http://code.google.com/p/processing/issues/detail?id=340
 //	// Otherwise if outside the range, acos() will return NaN
 //	// http://www.cppreference.com/wiki/c/math/acos
 //	if (amt <= -1) {
-//		return PConstants.PI;
+//		return PConstants.PI
 //	} else if (amt >= 1) {
 //		// http://code.google.com/p/processing/issues/detail?id=435
-//		return 0;
+//		return 0
 //	}
-//	return (float) Math.acos(amt);
+//	return (float) Math.acos(amt)
 //}
 
 	toString() {
-		return `[ ${this.x}, ${this.y}, ${this.z} ]`;
+		return `{${this.x}, ${this.y}, ${this.z}}`
 	}
 
 //@Override
 //public boolean equals(Object obj) {
 //	if (!(obj instanceof PVector)) {
-//		return false;
+//		return false
 //	}
-//	final PVector p = (PVector) obj;
-//	return x == p.x && y == p.y && z == p.z;
+//	final PVector p = (PVector) obj
+//	return x == p.x && y == p.y && z == p.z
 //}
 }
 
-Vector.sub = (v1, v2) => new Vector(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
+Vector.sub = (v1, v2) => new Vector(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z)
+Vector.fromAngle = a => new Vector(Math.cos(a), Math.sin(a), 0)

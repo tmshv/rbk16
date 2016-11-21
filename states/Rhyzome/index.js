@@ -1,8 +1,10 @@
-const repulsion = 1000
+const repulsion = 500000
 const mass = 1
 const k = 1
-const damping = .8975
-const springLength = 10
+const damping = 0.0125;//.05
+const springLength = 300
+const velocityLimit = 10
+const size = 50
 
 let container
 let camera, scene, renderer
@@ -26,62 +28,409 @@ let mouse;
 
 let mainObject;
 
-const random = (a, b) => b ? a + (b - a) * Math.random() : Math.random() * a
 const click = i => sendData({id: i.id})
 const interpolate = (m, n, v) => m + (n - m) * v
 
 const data = {
 	nodes: [
 		{
-			id: 'ROOT',
-			file: 'processing-2.png',
-		},
-		{
 			id: 'Q',
 			file: 'Q.png',
+			size: 150
 		},
 		{
 			id: 'S',
 			file: 'S.png',
+			size: 150
 		},
 		{
 			id: 'SQ',
 			file: 'SQ.png',
+			size: 150
 		},
 		{
 			id: 'SQSPB',
 			file: 'SQSPB.png',
-		}
+			size: 150
+		},
+
+		{
+			id: 'QHello',
+			file: 'Q.png',
+		},
+		{
+			id: 'Q9',
+			file: 'Q.png',
+		},
+		{
+			id: 'QBars',
+			file: 'Q.png',
+		},
+		{
+			id: 'QDF',
+			file: 'Q.png',
+		},
+		{
+			id: 'QMS',
+			file: 'Q.png',
+		},
+		{
+			id: 'QEnd',
+			file: 'Q.png',
+		},
+
+		{
+			id: 'SHello',
+			file: 'S.png',
+		},
+		{
+			id: 'SUndstndr',
+			file: 'S.png',
+		},
+		{
+			id: 'S2',
+			file: 'S.png',
+		},
+
+		{
+			id: "SQSPBHello",
+			file: "SQSPB.png"
+		},
+		{
+			id: "SQSPBMap",
+			file: "SQSPB.png"
+		},
+		{
+			id: "SQSPBP",
+			file: "SQSPB.png"
+		},
+		{
+			id: "SQSPBPYellow",
+			file: "SQSPB.png"
+		},
+		{
+			id: "SQSPBPhone",
+			file: "SQSPB.png"
+		},
+		{
+			id: "SQSPBPRed",
+			file: "SQSPB.png"
+		},
+		{
+			id: "SQSPBEnd",
+			file: "SQSPB.png"
+		},
+
+		{
+			id: "SQF",
+			file: "SQ.png"
+		},
+
+		{
+			id: "SQFHello",
+			file: "SQ.png"
+		},
+
+		{
+			id: "SQF1",
+			file: "SQ.png"
+		},
+
+		{
+			id: "SQF2",
+			file: "SQ.png"
+		},
+
+		{
+			id: "SQI",
+			file: "SQ.png"
+		},
+
+		{
+			id: "SQIHello",
+			file: "SQ.png"
+		},
+
+		{
+			id: "SQI1",
+			file: "SQ.png"
+		},
+
+		{
+			id: "SQI2",
+			file: "SQ.png"
+		},
+
+		{
+			id: "SQI3",
+			file: "SQ.png"
+		},
+
+		{
+			id: "SQC",
+			file: "SQ.png"
+		},
+
+		{
+			id: "SQCHello",
+			file: "SQ.png"
+		},
+
+		{
+			id: "SQC1",
+			file: "SQ.png"
+		},
+
+		{
+			id: "SQC2",
+			file: "SQ.png"
+		},
+
+		{
+			id: "SQCGifs",
+			file: "SQ.png"
+		},
+
 	],
 
 	links: [
 		{
-			from: 'ROOT',
-			to: 'Q'
+			from: 'Q',
+			to: 'S',
+			k: 5
+		},
+		{
+			from: 'S',
+			to: 'SQ'
 		},
 		{
 			from: 'Q',
-			to: 'S'
+			to: 'SQ'
 		},
-		////{
-		//	from: 'S',
-		//	to: 'SQ'
-		//},
+		{
+			from: 'Q',
+			to: 'SQSPB',
+			k: 5
+		},
+		{
+			from: 'S',
+			to: 'SQSPB'
+		},
+		{
+			from: 'SQ',
+			to: 'SQSPB',
+			k: 5
+		},
+
+		{
+			from: 'Q',
+			to: 'QHello',
+			length: 100,
+			k: 15
+		},
+		{
+			from: 'QHello',
+			to: 'Q9',
+			length: 3,
+			k: 15
+		},
+		{
+			from: 'Q9',
+			to: 'QBars',
+			length: 3,
+			k: 15
+		},
+		{
+			from: 'QBars',
+			to: 'QDF',
+			length: 3,
+			k: 15
+		},
+		{
+			from: 'QDF',
+			to: 'QMS',
+			length: 3,
+			k: 15
+		},
+		{
+			from: 'QMS',
+			to: 'QEnd',
+			length: 3,
+			k: 15
+		},
+
+		{
+			from: 'S',
+			to: 'SHello',
+			length: 100,
+			k: 15
+		},
+		{
+			from: 'SHello',
+			to: 'SUndstndr',
+			length: 3,
+			k: 15
+		},
+		{
+			from: 'SUndstndr',
+			to: 'S2',
+			length: 3,
+			k: 15
+		},
+
+		{
+			from: "SQSPB",
+			to: "SQSPBHello",
+			length: 100,
+			k: 15
+		},
+		{
+			from: "SQSPBHello",
+			to: "SQSPBMap",
+			length: 3,
+			k: 15
+		},
+		{
+			from: "SQSPBMap",
+			to: "SQSPBP",
+			length: 3,
+			k: 15
+		},
+		{
+			from: "SQSPBP",
+			to: "SQSPBPYellow",
+			length: 3,
+			k: 15
+		},
+		{
+			from: "SQSPBPYellow",
+			to: "SQSPBPhone",
+			length: 3,
+			k: 15
+		},
+		{
+			from: "SQSPBPhone",
+			to: "SQSPBPRed",
+			length: 3,
+			k: 15
+		},
+		{
+			from: "SQSPBPRed",
+			to: "SQSPBEnd",
+			length: 3,
+			k: 15
+		},
+
+		{
+			from: "SQ",
+			to: "SQF",
+			length: 100,
+			k: 15
+		},
+
+		{
+			from: "SQF",
+			to: "SQFHello",
+			length: 3,
+			k: 15
+		},
+
+		{
+			from: "SQFHello",
+			to: "SQF1",
+			length: 3,
+			k: 15
+		},
+
+		{
+			from: "SQF1",
+			to: "SQF2",
+			length: 3,
+			k: 15
+		},
+
+		{
+			from: "SQF2",
+			to: "SQI",
+			length: 3,
+			k: 15
+		},
+
+		{
+			from: "SQI",
+			to: "SQIHello",
+			length: 3,
+			k: 15
+		},
+
+		{
+			from: "SQIHello",
+			to: "SQI1",
+			length: 3,
+			k: 15
+		},
+
+		{
+			from: "SQI1",
+			to: "SQI2",
+			length: 3,
+			k: 15
+		},
+
+		{
+			from: "SQI2",
+			to: "SQI3",
+			length: 3,
+			k: 15
+		},
+
+		{
+			from: "SQI3",
+			to: "SQC",
+			length: 3,
+			k: 15
+		},
+
+		{
+			from: "SQC",
+			to: "SQCHello",
+			length: 3,
+			k: 15
+		},
+
+		{
+			from: "SQCHello",
+			to: "SQC1",
+			length: 3,
+			k: 15
+		},
+
+		{
+			from: "SQC1",
+			to: "SQC2",
+			length: 3,
+			k: 15
+		},
+
+		{
+			from: "SQC2",
+			to: "SQCGifs",
+			length: 3,
+			k: 15
+		},
+
 		//{
-		//	from: 'Q',
-		//	to: 'SQ'
+		//	from: "QEnd",
+		//	to: "SQCGifs",
+		//	length: 100,
+		//	k: 15
 		//},
+		//
 		//{
-		//	from: 'Q',
-		//	to: 'SQSPB'
-		//},
-		//{
-		//	from: 'S',
-		//	to: 'SQSPB'
-		//},
-		//{
-		//	from: 'SQ',
-		//	to: 'SQSPB'
+		//	from: "S2",
+		//	to: "SQSPBEnd",
+		//	length: 100,
+		//	k: 15
 		//},
 	]
 }
@@ -92,7 +441,7 @@ function sendData(data) {
 
 function init() {
 	camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000)
-	camera.position.z = 1500
+	camera.position.z = 2500
 
 	scene = new THREE.Scene()
 	scene.add(camera)
@@ -113,7 +462,16 @@ function init() {
 	raycaster = new THREE.Raycaster()
 	mouse = new THREE.Vector2()
 
+	window.addEventListener('resize', onWindowResize, false);
+
 	main(data)
+}
+
+function onWindowResize() {
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+
+	renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 function main(data) {
@@ -121,22 +479,25 @@ function main(data) {
 	scene.add(group)
 	mainObject = group
 
-	data.nodes.forEach(node => {
+	data.nodes.forEach((node, i) => {
 		const d = randomSpherePoint(50)
-		const agent = new Agent(...d, 5)
+		//const d = [-500 + i * 1000, 0, 0]
+
+		const agent = new Agent(...d, velocityLimit)
 		agent.mass = mass
 		agent.damping = damping
 
 		const map = new THREE.TextureLoader().load(node.file)
 		const material = new THREE.SpriteMaterial({map: map, color: 0xffffff, fog: true})
 
+		const s = node.size || size
 		const sprite = new THREE.Sprite(material)
 		//sprite.position.x = x
 		//sprite.position.y = y
 		//sprite.position.z = z
-		sprite.scale.x = 50
-		sprite.scale.y = 50
-		sprite.scale.z = 50
+		sprite.scale.x = s
+		sprite.scale.y = s
+		sprite.scale.z = s
 
 		node.object = sprite
 		node.agent = agent
@@ -149,37 +510,35 @@ function main(data) {
 
 	data.links.forEach(link => {
 		const idIs = id => node => node.id === id
-		const nodeFrom = data.nodes.find(idIs(link.from))
-		const nodeTo = data.nodes.find(idIs(link.to))
+		const from = data.nodes.find(idIs(link.from))
+		const to = data.nodes.find(idIs(link.to))
 
-		const connection = new Connection(nodeFrom.agent, nodeTo.agent)
-		connection.length = springLength
-		connection.k = k
-
-		//	const material = new THREE.LineBasicMaterial({color: 0, linewidth: 2})
-		//
-		//	const vector = ([x, y, z]) => new THREE.Vector3(x, y, z)
-		//
-		//	connection.fromVector = vector([0,0,0])
-		//	connection.toVector = vector([0,0,0])
-		//
-		//	const geometry = new THREE.Geometry()
-		//	geometry.vertices.push(link.fromVector)
-		//	geometry.vertices.push(link.toVector)
-		//	geometry.computeLineDistances()
-		//
-		//	const line = new THREE.Line(geometry, material)
-		//
-		//	connection.line = line
+		const connection = new Connection(from.agent, to.agent)
+		connection.length = link.length || springLength
+		connection.k = link.k || k
 		connections.push(connection)
 
-		//	group.add(line)
+		const material = new THREE.LineBasicMaterial({color: 0xcccccc, linewidth: 1})
+		const vector = ([x, y, z]) => new THREE.Vector3(x, y, z)
+		//connection.fromVector = vector([0, 0, 0])
+		//connection.toVector = vector([0, 0, 0])
+		const geometry = new THREE.Geometry()
+		geometry.dynamic = true
+		//geometry.vertices.push(link.fromVector)
+		//geometry.vertices.push(link.toVector)
+
+		geometry.vertices.push(from.object.position)
+		geometry.vertices.push(to.object.position)
+		geometry.computeLineDistances()
+		const line = new THREE.Line(geometry, material)
+		connection.line = line
+		group.add(line)
 	})
 }
 
 function simulateRhyzome() {
 	applyCouloumbsLaw(repulsion, agents)
-	applyHooksLaw(k, connections)
+	applyHooksLaw(connections)
 
 	agents.forEach(a => {
 		a.update()
@@ -188,12 +547,6 @@ function simulateRhyzome() {
 		a.object.position.y = a.location.y
 		a.object.position.z = a.location.z
 	})
-
-	//const iii = (v, [x1, y1, z1], [x2, y2, z2]) => [interpolate(x1, x2, v), interpolate(y1, y2, v), interpolate(z1, z2, v)]
-	//
-	//const r = 0.125
-	//const coordFrom = iii(r, nodeFrom.coord, nodeTo.coord)
-	//const coordTo = iii(1 - r, nodeFrom.coord, nodeTo.coord)
 }
 
 function applyCouloumbsLaw(repulsion, agents) {
@@ -201,7 +554,7 @@ function applyCouloumbsLaw(repulsion, agents) {
 		for (let b of agents) {
 			if (a != b) {
 				let d = a.location.dist(b.location)
-				if (d == 0) d = 0.001
+				if (d === 0) d = 0.0000001
 
 				let f = a.flee(b.location)
 				f.normalize()
@@ -216,12 +569,12 @@ function applyCouloumbsLaw(repulsion, agents) {
 	}
 }
 
-function applyHooksLaw(k, connections) {
+function applyHooksLaw(connections) {
 	for (let c of connections) {
 		let f = c.a.seek(c.b.location)
-		const displacement = c.length - f.mag()
+		const displacement = c.length - c.a.distanceTo(c.b)
 		f.normalize()
-		f.mult(k * displacement)
+		f.mult(c.k * displacement)
 
 		c.b.force(f)
 		f.mult(-1)
@@ -239,12 +592,23 @@ function calcKineticEnergy(agents) {
 }
 
 function animate() {
-	//mainObject.rotation.x += 0.001
-	//mainObject.rotation.y += 0.0005
+	mainObject.rotation.x += 0.01
+	mainObject.rotation.y += 0.0005
 
 	simulateRhyzome()
 
-	console.log(calcKineticEnergy(agents))
+	//console.log(calcKineticEnergy(agents))
+	//agents.map(a => a.location)
+	//	.map(v => v.toString())
+	//	.map(console.log)
+
+	connections
+		.map(link =>link.line.geometry)
+		.forEach(geometry => {
+			geometry.verticesNeedUpdate = true
+			//geometry.computeLineDistances()
+		})
+
 
 	requestAnimationFrame(animate)
 	render()
@@ -256,19 +620,3 @@ function render() {
 
 init()
 animate()
-
-/*
- Returns a random point of a sphere, evenly distributed over the sphere.
- The sphere is centered at (x0,y0,z0) with the passed in radius.
- The returned point is returned as a three element array [x,y,z].
- */
-function randomSpherePoint(radius) {
-	const u = Math.random()
-	const v = Math.random()
-	const theta = 2 * Math.PI * u
-	const phi = Math.acos(2 * v - 1)
-	const x = (radius * Math.sin(phi) * Math.cos(theta))
-	const y = (radius * Math.sin(phi) * Math.sin(theta))
-	const z = (radius * Math.cos(phi))
-	return [x, y, z]
-}
